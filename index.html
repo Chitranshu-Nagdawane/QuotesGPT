@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuotesGPT</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: black;
+            color: white;
+        }
+        nav {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            text-align: right;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        nav a:hover {
+            color: gray;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+        .input-container {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+        button {
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #1d0844; /* Changed  */
+            color: white; /* Changed */
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color:#7d52ed ; /* Changed */
+        }
+        .footer {
+            text-align: center;
+            font-size: 14px;
+            margin-top: auto;
+            padding: 10px;
+        }
+        #quoteDisplay {
+            font-size: 100px; /* Setting font size to 100 */
+        }
+    </style>
+</head>
+<body>
+    <!-- Your navigation -->
+    <nav>
+        <a href="C:\Users\Chitranshu\Desktop\QuotesGpt\QuotesGPT.html">Jupyter File</a>
+        <a href="C:\Users\Chitranshu\Desktop\QuotesGpt\Quotesgpt.txt">Logs</a>
+    </nav>
+    <div class="container">
+        <h1>QuotesGPT</h1>
+        <p>Welcome to QuotesGPT - Your source for inspiring quotes!</p>
+        <div class="input-container">
+            <input type="text" id="quoteInput" placeholder="Enter your keyword here">
+            <button onclick="generateQuote()">Generate <img src="https://emojicdn.elk.sh/✨" alt="sparkle" style="width: 20px; height: 13px;"></button>
+        </div>
+        <div id="quoteDisplay"></div>
+    </div>
+    <footer class="footer">
+        Designed and Developed with ❤️ by Chitranshu Nagdawane © 2024
+    </footer>
+
+    <script>
+        // Arrays of quotes
+        var loveQuotes = [
+            "The greatest happiness of life is the conviction that we are loved; loved for ourselves, or rather, loved in spite of ourselves.",
+            "The best thing to hold onto in life is each other.",
+            "Being deeply loved by someone gives you strength, while loving someone deeply gives you courage.",
+            "Love is composed of a single soul inhabiting two bodies.",
+            "The only thing we never get enough of is love; and the only thing we never give enough of is love."
+        ];
+
+        var hopeQuotes = [
+            "Hope is being able to see that there is light despite all of the darkness.",
+            "Hope is the thing with feathers that perches in the soul and sings the tune without the words and never stops at all.",
+            "Once you choose hope, anything's possible.",
+            "Hope is important because it can make the present moment less difficult to bear. If we believe that tomorrow will be better, we can bear a hardship today.",
+            "Hope is a waking dream."
+        ];
+
+        function typeWriter(text, i, quoteDisplay) {
+    if (i === 0) {
+        quoteDisplay.innerHTML += '"';
+    }
+    if (i < text.length) {
+        quoteDisplay.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(function() {
+            typeWriter(text, i, quoteDisplay);
+        }, 50); // Adjust the speed here (in milliseconds)
+    } else {
+        quoteDisplay.innerHTML += '"';
+    }
+}
+
+
+        function generateQuote() {
+            var input = document.getElementById("quoteInput").value.toLowerCase();
+            var quoteDisplay = document.getElementById("quoteDisplay");
+            var quote = "";
+
+            if (input === "love") {
+                quote = loveQuotes[Math.floor(Math.random() * loveQuotes.length)];
+            } else if (input === "hope") {
+                quote = hopeQuotes[Math.floor(Math.random() * hopeQuotes.length)];
+            } else {
+                quote = "Sorry, no quotes found for this keyword. Still Thinking...";
+            }
+
+            // Clear previous quote
+            quoteDisplay.innerHTML = "";
+
+            // Display the quote with typing effect
+            typeWriter(quote, 0, quoteDisplay);
+        }
+    </script>
+</body>
+</html>
